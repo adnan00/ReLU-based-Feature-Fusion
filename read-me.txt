@@ -1,0 +1,46 @@
+# Could not add data due to large size of the data. Given publicly available data links below.
+Publicly Available Dataset Download Link:
+UCM : http://weegee.vision.ucmerced.edu/datasets/landuse.html
+NWPU-RESISC45: https://onedrive.live.com/?authkey=%21AHHNaHIlzp%5FIXjs&cid=5C5E061130630A68&id=5C5E061130630A68%21107&parId=5C5E061130630A68%21112&action=locate
+PatternNet: https://drive.google.com/file/d/127lxXYqzO6Bd0yZhvEbgIfz95HaEnr9K/view
+AID : https://pan.baidu.com/s/1mifOBv6#list/path=%2F
+
+
+
+
+
+Dataset Directory Format:
+Example:
+AID/
+---Airport/
+----------airport_1.jpg
+----------airport_2.jpg
+---BareLand/
+-----------bareland_1.jpg
+-----------bareland_2.jpg
+.....
+
+Computation of alpha:
+compute_alpha.py
+python compute_alpha.py --dir path_to_dataset_directory
+Example:
+python compute_alpha.py --dir C:\Users\Documents\AID
+
+
+Classification:
+Step 1: python feature_extractor.py --dir path_to_dataset_directory --block block_numbers_separated_by_underscore
+
+#After executing Step 1 X.npy and Y.npy will be generated
+
+Step 2: python classify.py --nPCA number_of_pca_components --trainsize percentage_of_training_samples
+
+Example:
+python feature_extractor.py --dir C:\Users\Documents\AID --block 3_6_13
+python classify.py --nPCA 900 --trainsize 20  
+
+#PCA can be excluded from the pipeline by putting nPCA 0
+Example:
+python classify.py --nPCA 0 --trainsize 20
+
+
+
