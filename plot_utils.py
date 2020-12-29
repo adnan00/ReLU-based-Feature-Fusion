@@ -11,7 +11,8 @@ def pca_variation_plot():
                 'weight': 'medium',
                 'size': 18}
 
-        plt.rc('font', **font)
+        #plt.rc('font', **font)
+        plt.rcParams.update({'font.size': 15, 'font.weight': 'semibold'})
         nwpu = df[df['Dataset'] == 'NWPU'].reset_index(drop=True)
         nwpu = nwpu.sort_values('PCA')
         aid = df[df['Dataset'] == 'AID'].reset_index(drop=True)
@@ -29,21 +30,24 @@ def pca_variation_plot():
                  linewidth=2, markersize=8, label="AID")
         ax1.plot(pnet['PCA'], pnet['Acc_Mean'], color='m', marker='P', linestyle='dashed',
                  linewidth=2, markersize=7, label="PatternNet")
-        ax1.set_ylabel('Accuracy (%)', color='black')
+        ax1.set_ylabel('Accuracy (%)', color='black',fontsize=20)
         ax1.legend(prop={'size': 9})
         ax1.grid(linestyle = ':')
 
         ax2 = ax1.twinx()
         ax2.plot(aid['PCA'], aid['PCA_size'], color='black', marker='X', linestyle='dashed',
                  linewidth=2, markersize=10, label="PCA Model Size")
-        ax2.set_ylabel('PCA Model Size (MB)', color='black')
+        ax2.set_ylabel('PCA Model Size (MB)', color='black',fontsize=20)
         ax2.legend(loc = 'lower center',prop={'size': 9})
-        ax1.set_xlabel("Number of PCA Components")
+        ax1.set_xlabel("Number of PCA Components",fontsize=20)
         #ax2.legend()
         #plt.grid(ls='--')
         #plt.plot(pnet['PCA'], pnet['Acc_Mean'], color='magenda', marker='^', linestyle='dashed',
         #         linewidth=2, markersize=12, label="Base Model Size")
-        plt.savefig('accVSpcamodel.png')
+        #plt.savefig('accVSpcamodel.png')
+        plt.setp(ax1.xaxis.get_majorticklabels(), rotation=90)
+        plt.tight_layout()
+        plt.savefig('accVSpcamodel.eps', format='eps', bbox_inches='tight', dpi=300)
         plt.show()
 def percentage_relu_plot():
     df = pd.read_csv('zero_percentage_white.csv')
@@ -85,6 +89,27 @@ def percentage_relu_plot():
     plt.xticks(rotation=90)
     plt.xticks(ticks=range(0,len(idx)),labels=x_idx)
     plt.savefig('zero_percentage_of_white_1.eps', format='eps', bbox_inches='tight',dpi=300)
+    plt.show()
+def modelSize_Accuracy():
+    plt.rcParams.update({'font.size': 15, 'font.weight': 'semibold'})
+    df = pd.read_csv('modelSizevsAccuracy.csv')
+    print(df)
+    fig, ax1 = plt.subplots()
+
+    ax1.plot(df['Layer'], df['Total Size'], linestyle='--', marker='o',linewidth=2,markersize=10, label="Model Size",color='r')
+    ax2=ax1.twinx()
+    ax2.plot(df['Accuracy Mean'],linestyle='--', marker='X',linewidth=2,markersize=10, label="Accuracy",color='b')
+    #ax1.tick_params(labelrotation=45)
+    plt.setp(ax1.xaxis.get_majorticklabels(), rotation=90)
+    ax1.legend(loc = 'lower center',prop={'size': 12})
+    ax2.legend(loc = 'lower right',prop={'size': 12})
+    ax2.set_ylabel('Accuracy (%)', color='black',fontsize=20)
+    ax1.set_ylabel('Model Size (MB)', color='black',fontsize=20)
+    ax1.set_xlabel('Layer Chunks',fontsize=20)
+    #ax1.legend(prop={'size': 9})
+    ax1.grid(linestyle = ':')
+    plt.tight_layout()
+    plt.savefig('modelsize_vs_accuracy.eps', format='eps', bbox_inches='tight', dpi=300)
     plt.show()
 def image_resolution_change(img):
     image = cv2.imread(img)
@@ -204,9 +229,10 @@ def two_sided_plot():
     fig.savefig('zero_alpha_aid.eps',format='eps',dpi=300)
     plt.show()
 #two_sided_plot()
-#pca_variation_plot()
+pca_variation_plot()
 #alpha_plot()
-percentage_relu_plot()
+#percentage_relu_plot()
+modelSize_Accuracy()
 #exit()
 
 
