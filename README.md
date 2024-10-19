@@ -1,4 +1,5 @@
-# Aerial Image Classification
+
+# A Lightweight Relu-based Feature Fusion for Aerial Scene Classification
 
 Due to the large size of the datasets, they cannot be included directly in this repository. You can download the datasets from the publicly available links below.
 
@@ -11,7 +12,16 @@ Due to the large size of the datasets, they cannot be included directly in this 
 ## Dataset Directory Format:
 
 Please ensure your dataset is organized in the following format:
-
+Dataset Directory Format:
+Example:
+AID/
+---Airport/
+----------airport_1.jpg
+----------airport_2.jpg
+---BareLand/
+-----------bareland_1.jpg
+-----------bareland_2.jpg
+.....
 
 ## Scripts
 
@@ -29,25 +39,19 @@ Use the following command to classify the dataset:
 python classify.py --nPCA number_of_pca_components --trainsize percentage_of_training_samples
 ```
 
-## MIT License
 
-Copyright (c) 2024 John Doe
+## References
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+```bibtex
+@inproceedings{arefeen2021lightweight,
+  title={A lightweight relu-based feature fusion for aerial scene classification},
+  author={Arefeen, Md Adnan and Nimi, Sumaiya Tabassum and Uddin, Md Yusuf Sarwar and Li, Zhu},
+  booktitle={2021 IEEE International Conference on Image Processing (ICIP)},
+  pages={3857--3861},
+  year={2021},
+  organization={IEEE}
+}
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+
 
